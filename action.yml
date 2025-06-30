@@ -1,0 +1,13 @@
+name: 'Hello World' # name 定义工作流的名称
+description: 'Greet someone and record the time' # 对该工作流要完成的任务进行简单的描述.
+inputs: # 输入类
+  who-to-greet:  # 变量 id of output
+    description: '测试输入描述'
+    required: true   # 必须存在
+    default: 'World' # 默认值
+outputs: # 输出类
+  time: # 变量 id of output
+    description: '测试输出描述'
+runs: # 运行
+  using: 'node12' # 使用 node12 运行
+  main: 'index.js' # 运行入口

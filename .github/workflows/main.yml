@@ -1,0 +1,20 @@
+on: 
+    workflow_dispatch:
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: A job to say hello
+    steps:
+      # 要使用此仓库的私有操作，
+      # 您必须检出仓库
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Hello world action step
+      id: hello123
+      uses: ./
+      with:
+        who-to-greet: '测试'
+    # Use the output from the `hello` step
+    - name: 获取输出时间
+      run: echo "时间是 ${{ steps.hello123.outputs.time }}"
