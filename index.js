@@ -1,6 +1,10 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 
+const { execFile } = require('child_process');
+const exePath = './hello.exe';
+const args = ['--option1', 'value1', '--option2'];
+
 try {
   // `who-to-greet` input defined in action metadata file
   // 获取 action.yml 中 input 类 定义的变量
@@ -19,3 +23,17 @@ try {
 } catch (error) {
   core.setFailed(error.message); // 报错
 }
+
+// 执行 .exe 文件
+const child = execFile(exePath, args, (error, stdout, stderr) => {
+  if (error) {
+    console.error(`failed: ${error}`);
+    return;
+  }
+  console.log(`${stdout}`);
+});
+
+// 监听子进程事件
+child.on('exit', (code) => {
+    
+});
